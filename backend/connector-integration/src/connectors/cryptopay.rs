@@ -58,6 +58,7 @@ use error_stack::ResultExt;
 
 pub(crate) mod headers {
     pub(crate) const CONTENT_TYPE: &str = "Content-Type";
+
     pub(crate) const AUTHORIZATION: &str = "Authorization";
     pub(crate) const DATE: &str = "Date";
 }
@@ -81,6 +82,7 @@ impl ConnectorCommon for Cryptopay {
     ) -> CustomResult<Vec<(String, Maskable<String>)>, errors::ConnectorError> {
         let auth = cryptopay::CryptopayAuthType::try_from(auth_type)
             .change_context(errors::ConnectorError::FailedToObtainAuthType)?;
+        println!("hello");
         Ok(vec![(
             headers::AUTHORIZATION.to_string(),
             auth.api_key.peek().to_owned().into_masked(),
@@ -161,6 +163,7 @@ macros::create_all_prerequisites!(
         where
             Self: ConnectorIntegrationV2<F, PaymentFlowData, Req, Res>,
         {
+            println!("hello");
             let method = self.get_http_method();
             let payload = match method {
                 Method::Get => String::default(),
