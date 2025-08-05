@@ -104,6 +104,7 @@ impl ConnectorCommon for Razorpay {
     ) -> CustomResult<Vec<(String, Maskable<String>)>, errors::ConnectorError> {
         let auth = razorpay::RazorpayAuthType::try_from(auth_type)
             .change_context(errors::ConnectorError::FailedToObtainAuthType)?;
+        println!("hello");
         Ok(vec![(
             headers::AUTHORIZATION.to_string(),
             auth.generate_authorization_header().into_masked(),
