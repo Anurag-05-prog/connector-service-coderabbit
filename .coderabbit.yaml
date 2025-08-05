@@ -22,7 +22,7 @@ reviews:
   auto_apply_labels: false
   suggested_reviewers: false
   auto_assign_reviewers: false
-  poem: false
+  poem: true
   labeling_instructions:
     - label: ""
       instructions: ""
